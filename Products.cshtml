@@ -1,0 +1,47 @@
+@page
+@model ASP_NET_03._Razor_Pages_Product_Site.Pages.ProductsModel
+@{
+    ViewData["Title"] = "Our Products";
+}
+
+<div class="container mt-5">
+    <h1 class="text-center mb-5">🛍 Our Products</h1>
+
+    <div class="row">
+        @foreach (var product in Model.Products)
+        {
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100 shadow-sm border-0 rounded-4">
+                    <div class="card-body d-flex flex-column">
+
+                        <h5 class="card-title fw-bold">@product.Name</h5>
+
+                        <p class="card-text text-muted small">
+                            @(product.Description.Length > 80 
+                                ? product.Description.Substring(0, 80) + "..."
+                                : product.Description)
+                        </p>
+
+                        <div class="mt-auto">
+
+                            <p class="fw-semibold mb-2">
+                                💰 $@product.Price
+                            </p>
+
+                            <span class="badge @(product.IsAvailable ? "bg-success" : "bg-secondary") mb-3">
+                                @(product.IsAvailable ? "In Stock" : "Out of Stock")
+                            </span>
+
+                            <a asp-page="/Product"
+                               asp-route-id="@product.Id"
+                               class="btn btn-dark w-100 rounded-3">
+                                View Details →
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

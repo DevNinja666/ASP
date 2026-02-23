@@ -1,0 +1,55 @@
+@page "{id:int}"
+@model ASP_NET_03._Razor_Pages_Product_Site.Pages.ProductModel
+@{
+    ViewData["Title"] = "Product Details";
+}
+
+<div class="container mt-5">
+
+    @if (Model.Product is null)
+    {
+        <div class="alert alert-danger text-center">
+            Product not found
+        </div>
+    }
+    else
+    {
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+
+                <div class="card shadow border-0 rounded-4 p-4">
+
+                    <h2 class="fw-bold mb-3">@Model.Product.Name</h2>
+
+                    <p class="text-muted">
+                        @Model.Product.Description
+                    </p>
+
+                    <hr />
+
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="text-dark mb-0">
+                             $@Model.Product.Price
+                        </h4>
+
+                        <span class="badge fs-6 @(Model.Product.IsAvailable ? "bg-success" : "bg-secondary")">
+                            @(Model.Product.IsAvailable ? "Available Now" : "Currently Unavailable")
+                        </span>
+                    </div>
+
+                    <p>
+                         Items left in stock: <strong>@Model.Product.Count</strong>
+                    </p>
+
+                    <div class="mt-4">
+                        <a asp-page="/Products" class="btn btn-outline-dark rounded-3">
+                            ← Back to Products
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    }
+</div>

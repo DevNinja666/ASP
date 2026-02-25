@@ -1,0 +1,27 @@
+@model PortfolioMVC.Models.ContactViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Связаться со мной</h2>
+
+<form method="post">
+    @Html.AntiForgeryToken()
+
+    <div class="mb-3">
+        <label>Имя</label>
+        <input asp-for="Name" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Email</label>
+        <input asp-for="Email" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label>Сообщение</label>
+        <textarea asp-for="Message" class="form-control"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-dark">Отправить</button>
+</form>
